@@ -19,8 +19,10 @@ public class bossBehaving : MonoBehaviour
     [SerializeField] private Transform Player;
 
     [SerializeField] private Slider healthBar;
+    [SerializeField] private float dashSpeed;
 
     bool facingRigt = true;
+
 
     Vector3 pos, localScale;
     private bool move = true;
@@ -91,8 +93,6 @@ public class bossBehaving : MonoBehaviour
             Attack();
         }
     }
-
-
     float CalculateHealth()
     { 
         return health / MaxHealth; 
@@ -110,6 +110,7 @@ public class bossBehaving : MonoBehaviour
     void Attack()
     {
         move = false;
+        rb.velocity=  Vector2.left*dashSpeed;
        //анімачія атаки
        
     }
