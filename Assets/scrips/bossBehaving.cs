@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class bossBehaving : MonoBehaviour
 {
     [SerializeField] private float MaxHealth;
@@ -13,13 +14,16 @@ public class bossBehaving : MonoBehaviour
     [SerializeField]private float moveSpeed;
     [SerializeField]private float frequency;
     [SerializeField]private float magnitude;
+    [SerializeField] private float distance;
+
+    [SerializeField] private Transform Player;
 
     [SerializeField] private Slider healthBar;
 
     bool facingRigt = true;
 
     Vector3 pos, localScale;
-
+    private bool move = true;
     [SerializeField] Transform limitePoint, limitePoint2;
     private void Start()
     {
@@ -32,25 +36,29 @@ public class bossBehaving : MonoBehaviour
     }
     private void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            health -= 10; 
+            GetDamage(10);
             healthBar.value = CalculateHealth();
+            moveSpeed += health / MaxHealth;
         }
         if (health <= 0)
         {
             Debug.Log("Die");
         }
 
-
-
-        CheckWhereToFace();
-
-        if (facingRigt)
+        if (move)
         {
-            MoveRight();
+            CheckWhereToFace();
+
+            if (facingRigt)
+            {
+                MoveRight();
+            }
+            else MoveLeft();
         }
-        else MoveLeft();
+
     }
     void CheckWhereToFace()
     {
@@ -76,19 +84,37 @@ public class bossBehaving : MonoBehaviour
         pos -= transform.right * Time.deltaTime * moveSpeed;
         transform.position = pos + transform.up * Mathf.Sin(Time.time * frequency) * magnitude;
     }
-
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Bullet")
+        if (collision.gameObject.tag == "Player")
         {
-           //this.health -= collision.gameObject.damage;
+            Attack();
         }
     }
 
+
     float CalculateHealth()
-    {
-        print(health / MaxHealth);
+    { 
         return health / MaxHealth; 
     }
+
+    void GetDamage(int damage)
+    {
+        health -= damage;
+        GetEngry();
+    }
+    void GetEngry()
+    {
+        moveSpeed += (MaxHealth-health)/100;
+    }
+    void Attack()
+    {
+        move = false;
+       //анімачія атаки
+       
+    }
+    
+
+         
+
 }
