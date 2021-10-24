@@ -15,7 +15,7 @@ public class bossBehaving : MonoBehaviour
     public float distanceForAtt;
     public GameObject huyniy;
     [SerializeField]private GameObject panel;
-    private Animator animPanel;
+    //private Animator animPanel;
 
 
 
@@ -25,7 +25,7 @@ public class bossBehaving : MonoBehaviour
         curentHealth = MaxHealth;
         slider.value = curentHealth;
         huyniy.SetActive(false);
-        animPanel = panel.GetComponent<Animator>();
+        //animPanel = panel.GetComponent<Animator>();
         
     }
     private void Update()
@@ -85,7 +85,7 @@ public class bossBehaving : MonoBehaviour
     void Destroy()
     {
         Destroy(gameObject);
-        animPanel.SetBool("END", true);
+        //animPanel.SetBool("END", true);
 
     }
 
