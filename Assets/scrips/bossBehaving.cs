@@ -6,116 +6,87 @@ using UnityEngine.UI;
 
 public class bossBehaving : MonoBehaviour
 {
-    [SerializeField] private float MaxHealth;
-    private float health;
-    [SerializeField] private int damage;
-    private Rigidbody2D rb;
-    private Animator anim;
-    [SerializeField]private float moveSpeed;
-    [SerializeField]private float frequency;
-    [SerializeField]private float magnitude;
-    [SerializeField] private float distance;
-
-    [SerializeField] private Transform Player;
-
-    [SerializeField] private Slider healthBar;
-    [SerializeField] private float dashSpeed;
-
-    bool facingRigt = true;
+    public int damage;
+    public int MaxHealth;
+    private float curentHealth;
+    public Slider slider;
+    public GameObject player;
+    public Animator anim;
+    public float distanceForAtt;
+    public GameObject huyniy;
+    [SerializeField]private GameObject panel;
+    private Animator animPanel;
 
 
-    Vector3 pos, localScale;
-    private bool move = true;
-    [SerializeField] Transform limitePoint, limitePoint2;
-    private void Start()
+
+     void Start()
     {
-        health = MaxHealth;
-        rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
-        pos = transform.position;
-        localScale = transform.localScale;
-        healthBar.value = CalculateHealth();
+        slider.maxValue = MaxHealth;
+        curentHealth = MaxHealth;
+        slider.value = curentHealth;
+        huyniy.SetActive(false);
+        animPanel = panel.GetComponent<Animator>();
+        
     }
     private void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             GetDamage(10);
-            healthBar.value = CalculateHealth();
-            moveSpeed += health / MaxHealth;
         }
-        if (health <= 0)
+        if (Vector3.Distance(transform.position,player.transform.position)<=distanceForAtt)
         {
-            Debug.Log("Die");
+            anim.SetTrigger("attack");
         }
+        else
+        {
+            anim.ResetTrigger("attack");
+        }
+    }
 
-        if (move)
-        {
-            CheckWhereToFace();
-
-            if (facingRigt)
-            {
-                MoveRight();
-            }
-            else MoveLeft();
-        }
-
-    }
-    void CheckWhereToFace()
-    {
-        if (pos.x < limitePoint.position.x)
-        {
-            facingRigt = true;
-        }
-        else if (pos.x> limitePoint2.position.x)
-        {
-            facingRigt = false;
-        }
-        if (((facingRigt) && (localScale.x < 0)) || ((!facingRigt) && (localScale.x > 0)))
-            localScale.x *= -1;
-        transform.localScale = localScale;
-    }
-    void MoveRight()
-    {
-        pos += transform.right * Time.deltaTime * moveSpeed;
-        transform.position = pos + transform.up * Mathf.Sin(Time.time*frequency) * magnitude;
-    }
-    void MoveLeft()
-    {
-        pos -= transform.right * Time.deltaTime * moveSpeed;
-        transform.position = pos + transform.up * Mathf.Sin(Time.time * frequency) * magnitude;
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             Attack();
         }
     }
-    float CalculateHealth()
-    { 
-        return health / MaxHealth; 
-    }
-
-    void GetDamage(int damage)
-    {
-        health -= damage;
-        GetEngry();
-    }
-    void GetEngry()
-    {
-        moveSpeed += (MaxHealth-health)/100;
-    }
     void Attack()
     {
-        move = false;
-        rb.velocity=  Vector2.left*dashSpeed;
-       //анімачія атаки
-       
-    }
-    
+        anim.SetBool("attack", true);
+        GiveDamage(player);
+        anim.SetBool("attack", false);
 
-         
+    }
+    void GiveDamage(GameObject player)
+    {
+        //player.gameObject.GetComponent<Player1>.health -= damage;
+    }
+    void GetDamage(int damage)
+    {
+        curentHealth -= damage;
+        slider.value = curentHealth;
+        if (curentHealth <= MaxHealth / 2)
+        {
+            huyniy.SetActive(true);
+        }
+        if (IsDead())
+        {
+            Dead();
+        }
+    }
+    bool IsDead() => curentHealth <= 0;
+    void Dead()
+    {
+        print("dead");
+        anim.SetTrigger("IS_dead");
+        Invoke("Destroy", 2);
+    }
+    void Destroy()
+    {
+        Destroy(gameObject);
+        animPanel.SetBool("END", true);
+
+    }
 
 }
