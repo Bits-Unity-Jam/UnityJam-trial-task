@@ -99,12 +99,12 @@ public class Player1 : MonoBehaviour
         if (moveInput == 0)
         {
             anim.SetBool("run", false);
-            anim.SetBool("idle", true);
+            
         }
         else
         {
             anim.SetBool("run", true);
-            anim.SetBool("idle", false);
+           
         }
     }
 
