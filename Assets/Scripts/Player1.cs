@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading;
+using System.Threading.Tasks;
 
 public class Player1 : MonoBehaviour
 {
@@ -10,21 +12,25 @@ public class Player1 : MonoBehaviour
     private Rigidbody2D rb;
     public bool faceRight = true;
 
+    private Animator anim;
+    public bool flagJump;
     public int health;
     public float Jumpforce;
-    private bool isGround;
+    public bool isGround;
     public Transform groundCheak;
     private int ExtraJump;
     public int extraJumpValue;
     public float cheakRadius;
     public LayerMask WhatIsGround;
-    Animator anim;
+    //Animator anim;
 
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+       
+
     }
 
     // Update is called once per frame
@@ -32,25 +38,49 @@ public class Player1 : MonoBehaviour
     {
         if (isGround == true)
         {
+            
+
             ExtraJump = extraJumpValue;
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && ExtraJump > 0)
         {
+            flagJump = true;
+
+            anim.SetTrigger("jump");
+            //anim.SetBool("iblast",true);
+
             rb.velocity = Vector2.up * Jumpforce;
             ExtraJump--;
+          
         }
         else if (Input.GetKeyDown(KeyCode.Space) && ExtraJump == 0 && isGround == true)
         {
+            // anim.SetBool("iblast", false);
+            flagJump = false;
+
             rb.velocity = Vector2.up * Jumpforce;
         }
 
+       
+      
+
         if (health < 0)
         {
-            Destroy(gameObject);
+            anim.SetBool("die", true);
+
+            Invoke("Destroy", 1.01f);
+
+            
         }
 
     }
+
+    void Destroy ()
+    {
+        Destroy(gameObject);
+    }
+
 
     private void FixedUpdate()
     {
@@ -86,6 +116,7 @@ public class Player1 : MonoBehaviour
         if (collision.CompareTag("Bullet"))
         {
             health -= 5;
+            anim.SetTrigger("hurt");
         }
     }
 
