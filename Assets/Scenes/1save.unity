@@ -2150,7 +2150,7 @@ GameObject:
   - component: {fileID: 745540539}
   - component: {fileID: 745540541}
   - component: {fileID: 745540540}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: depositphotos_84083416-stock-illustration-texture-for-platformers-pixel-art
     (1)
   m_TagString: Untagged
@@ -2166,8 +2166,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 745540538}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.3221, y: -3.6277, z: 7.4534464}
-  m_LocalScale: {x: 0.49137375, y: 0.4962745, z: 1}
+  m_LocalPosition: {x: 7.94, y: -3.41, z: 7.4534464}
+  m_LocalScale: {x: 2.7046685, y: 0.52361923, z: 1}
   m_Children: []
   m_Father: {fileID: 1839863836}
   m_RootOrder: 21
@@ -3206,6 +3206,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1264685842}
+  - {fileID: 1818861305}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3237,16 +3238,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   faceRight: 1
-  flagJump: 0
   health: 25
   Jumpforce: 5
   isGround: 0
-  groundCheak: {fileID: 756401756}
-  extraJumpValue: 5
-  cheakRadius: 1
+  groundCheak: {fileID: 1818861305}
+  extraJumpValue: 2
+  cheakRadius: 0.2
   WhatIsGround:
     serializedVersion: 2
-    m_Bits: 3
+    m_Bits: 512
 --- !u!50 &1109201976
 Rigidbody2D:
   serializedVersion: 4
@@ -4415,6 +4415,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1818861304
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1818861305}
+  m_Layer: 0
+  m_Name: Ground Check
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1818861305
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818861304}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.066, y: -1.302, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_Children: []
+  m_Father: {fileID: 1109201973}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1839863835
 GameObject:
   m_ObjectHideFlags: 0

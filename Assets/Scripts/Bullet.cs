@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private bool flagJump;
+    private bool isGround;
     public GameObject player;
     public float speed;
     private Animator anim;
@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        flagJump = player.GetComponent<Player1>().flagJump;
+        isGround = player.GetComponent<Player1>().isGround;
 
         ChangeBullet();
 
@@ -30,16 +30,13 @@ public class Bullet : MonoBehaviour
     void ChangeBullet() 
     {
 
-        if (flagJump == true)
+        if (isGround == false)
         {
              anim.SetBool("iblast", true);
-            print("inlasttrue");
         }
         else
         {
             anim.SetBool("iblast", false);
-
-
         }
 
        

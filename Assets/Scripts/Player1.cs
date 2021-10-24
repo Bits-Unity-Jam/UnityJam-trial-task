@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Threading;
 using System.Threading.Tasks;
 
+
 public class Player1 : MonoBehaviour
 {
     
@@ -13,7 +14,6 @@ public class Player1 : MonoBehaviour
     public bool faceRight = true;
 
     private Animator anim;
-    public bool flagJump;
     public int health;
     public float Jumpforce;
     public bool isGround;
@@ -38,18 +38,15 @@ public class Player1 : MonoBehaviour
     {
         if (isGround == true)
         {
-            
-
             ExtraJump = extraJumpValue;
+        }
+        else
+        {
+            anim.SetTrigger("jump");
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && ExtraJump > 0)
         {
-            flagJump = true;
-
-            anim.SetTrigger("jump");
-            //anim.SetBool("iblast",true);
-
             rb.velocity = Vector2.up * Jumpforce;
             ExtraJump--;
           
@@ -57,7 +54,7 @@ public class Player1 : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Space) && ExtraJump == 0 && isGround == true)
         {
             // anim.SetBool("iblast", false);
-            flagJump = false;
+           
 
             rb.velocity = Vector2.up * Jumpforce;
         }
