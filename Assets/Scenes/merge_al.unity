@@ -298,7 +298,7 @@ GameObject:
   - component: {fileID: 47684311}
   - component: {fileID: 47684310}
   - component: {fileID: 47684312}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: high ground (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -954,7 +954,7 @@ GameObject:
   - component: {fileID: 671491267}
   - component: {fileID: 671491266}
   - component: {fileID: 671491268}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: high ground (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1215,7 +1215,7 @@ GameObject:
   - component: {fileID: 810719680}
   - component: {fileID: 810719679}
   - component: {fileID: 810719681}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: high ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2132,7 +2132,7 @@ GameObject:
   - component: {fileID: 1111162827}
   - component: {fileID: 1111162826}
   - component: {fileID: 1111162828}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: high ground (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3188,7 +3188,7 @@ GameObject:
   - component: {fileID: 1542001991}
   - component: {fileID: 1542001990}
   - component: {fileID: 1542001992}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: high ground (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3462,7 +3462,7 @@ GameObject:
   - component: {fileID: 1639670151}
   - component: {fileID: 1639670150}
   - component: {fileID: 1639670152}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: high ground (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3992,7 +3992,7 @@ GameObject:
   - component: {fileID: 1872590589}
   - component: {fileID: 1872590588}
   - component: {fileID: 1872590590}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: high ground (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4864,7 +4864,7 @@ GameObject:
   - component: {fileID: 2140476968}
   - component: {fileID: 2140476967}
   - component: {fileID: 2140476969}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: high ground (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

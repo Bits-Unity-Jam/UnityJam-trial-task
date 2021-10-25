@@ -30,10 +30,10 @@ public class bossBehaving : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GetDamage(10);
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    GetDamage(10);
+        //}
         if (Vector3.Distance(transform.position,player.transform.position)<=distanceForAtt)
         {
             anim.SetTrigger("attack");
