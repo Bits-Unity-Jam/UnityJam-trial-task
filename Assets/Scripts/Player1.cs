@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine.UI;
 
 
 public class Player1 : MonoBehaviour
 {
-    
+
+    public Slider slider;
     public float speed;
     private float moveInput;
     private Rigidbody2D rb;
     public bool faceRight = true;
 
     private Animator anim;
+    public int MaxHealth;
     public int health;
     public float Jumpforce;
     public bool isGround;
@@ -22,6 +25,7 @@ public class Player1 : MonoBehaviour
     public int extraJumpValue;
     public float cheakRadius;
     public LayerMask WhatIsGround;
+    public int damage;
     //Animator anim;
 
 
@@ -29,7 +33,8 @@ public class Player1 : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-       
+        slider.maxValue = MaxHealth;
+        slider.value = health;
 
     }
 

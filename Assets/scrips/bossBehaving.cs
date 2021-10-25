@@ -8,7 +8,7 @@ public class bossBehaving : MonoBehaviour
 {
     public int damage;
     public int MaxHealth;
-    private float curentHealth;
+    public float curentHealth;
     public Slider slider;
     public GameObject player;
     public Animator anim;
@@ -16,6 +16,7 @@ public class bossBehaving : MonoBehaviour
     public GameObject huyniy;
     [SerializeField]private GameObject panel;
     private Animator animPanel;
+   
 
 
 
@@ -30,10 +31,10 @@ public class bossBehaving : MonoBehaviour
     }
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    GetDamage(10);
-        //}
+        if (Input.GetKeyDown(KeyCode.E ))
+        {
+            GetDamage(10);
+        }
         if (Vector3.Distance(transform.position,player.transform.position)<=distanceForAtt)
         {
             anim.SetTrigger("attack");
@@ -50,7 +51,13 @@ public class bossBehaving : MonoBehaviour
         {
             Attack();
         }
+        if (collision.CompareTag("Bullet"))
+        {
+           
+            GetDamage(5);
+        }
     }
+    
     void Attack()
     {
         anim.SetBool("attack", true);
@@ -60,10 +67,12 @@ public class bossBehaving : MonoBehaviour
     }
     void GiveDamage(GameObject player)
     {
-        //player.gameObject.GetComponent<Player1>.health -= damage;
+        player.GetComponent<Player1>().health-=damage;
+        player.GetComponent<Player1>().slider.value = player.GetComponent<Player1>().health;
+
     }
-    void GetDamage(int damage)
-    {
+    public void GetDamage(int damage)
+    {  
         curentHealth -= damage;
         slider.value = curentHealth;
         if (curentHealth <= MaxHealth / 2)
@@ -86,6 +95,7 @@ public class bossBehaving : MonoBehaviour
     {
         Destroy(gameObject);
         animPanel.SetBool("END", true);
+        
 
     }
 

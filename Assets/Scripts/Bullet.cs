@@ -46,7 +46,9 @@ public class Bullet : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
+            collision.gameObject.GetComponent<bossBehaving>().GetDamage(5);
             Destroy(gameObject);
+
         }
     }
 }
