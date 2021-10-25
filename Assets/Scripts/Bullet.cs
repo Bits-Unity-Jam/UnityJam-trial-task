@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
     public float speed;
     private Animator anim;
     Rigidbody2D rb;
+    [SerializeField] private bool IsOnAir;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -29,16 +30,16 @@ public class Bullet : MonoBehaviour
     }
     void ChangeBullet() 
     {
-
-        if (isGround == false)
+        if (transform.position.y > -1.1f)
         {
-             anim.SetBool("iblast", true);
+            IsOnAir = true;
         }
         else
         {
-            anim.SetBool("iblast", false);
+            IsOnAir = false;
         }
 
+        anim.SetBool("iblast", IsOnAir);
        
     }
 
