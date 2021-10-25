@@ -23,7 +23,7 @@ public class collision : MonoBehaviour
     private void Start()
     {
         scoreBar = GameObject.FindGameObjectWithTag("ScoreBar").GetComponent<Slider>();
-        scoreBar.maxValue = 9;
+        scoreBar.maxValue = 10;
         scoreBar.value = scoreCount.gameScore;
     }
 }

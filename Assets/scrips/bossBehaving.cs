@@ -43,6 +43,14 @@ public class bossBehaving : MonoBehaviour
         {
             anim.ResetTrigger("attack");
         }
+        if (scoreCount.gameScore == 10)
+        {
+            END();
+        }
+        if (GameObject.FindGameObjectWithTag("Player").GetComponent<Player1>().health <= 0)
+        {
+            END();
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -94,9 +102,11 @@ public class bossBehaving : MonoBehaviour
     void Destroy()
     {
         Destroy(gameObject);
+        END();
+    }
+    void END()
+    {
         animPanel.SetBool("END", true);
-        
-
     }
 
 }

@@ -67,11 +67,11 @@ public class Player1 : MonoBehaviour
        
       
 
-        if (health < 0)
+        if (health <= 0)
         {
             anim.SetBool("die", true);
 
-            Invoke("Destroy", 1.01f);
+            Invoke("Destroy", 100);
 
             
         }
